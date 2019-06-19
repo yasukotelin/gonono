@@ -35,9 +35,8 @@ func createEmptyConfig(path string) error {
 
 func createEmptySettingJSONBytes() ([]byte, error) {
 	config := config{
-		Path:    "",
-		Editor:  "",
-		OpenCmd: "",
+		Path:   "",
+		Editor: "",
 	}
 	return json.MarshalIndent(config, "", "    ")
 }

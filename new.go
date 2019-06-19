@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -38,6 +39,9 @@ func runNew(c *cli.Context) error {
 	}
 
 	inputTitle := readLine("Title: ")
+	if inputTitle == "" {
+		return errors.New("inputed title is empty")
+	}
 
 	dirName := formatToDirectoryName(inputTitle)
 

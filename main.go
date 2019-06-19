@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
 
 	"github.com/urfave/cli"
 )
@@ -11,7 +10,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "gonono"
-	app.Version = "0.1.0"
+	app.Version = "1.0.0"
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{
@@ -21,20 +20,21 @@ func main() {
 		},
 		{
 			Name:    "open",
-			Usage:   "open with the explorer",
+			Usage:   "opens with the explorer",
 			Aliases: []string{"o"},
 			Action:  runOpen,
 		},
 		{
 			Name:    "new",
-			Usage:   "create the new content",
+			Usage:   "creates the new content",
 			Aliases: []string{"n"},
 			Action:  runNew,
 		},
 		{
-			Name:    "edit",
-			Usage:   "edit the created content",
-			Aliases: []string{"e"},
+			Name:    "finder",
+			Usage:   "finds the created content",
+			Aliases: []string{"f"},
+			Action:  runFinder,
 		},
 	}
 	app.Action = runGonono
@@ -50,7 +50,7 @@ func main() {
 func validGononoCmd(conf *config) error {
 	switch {
 	case conf.Path == "":
-		return fmt.Errorf("%s: Path is empty", configName)
+		return fmt.Errorf("%s: path is empty", configName)
 	case conf.Editor == "":
 		return fmt.Errorf("%s: editor is empty", configName)
 	}
@@ -73,8 +73,8 @@ func runGonono(c *cli.Context) error {
 	}
 
 	// カレントディレクトリでエディタを開くために"."を引数に指定する
-	cmd := exec.Command(conf.Editor, ".")
-	if err := cmd.Start(); err != nil {
+	command := fmt.Sprintf("%s .", conf.Editor)
+	if err = newCmd(command, nil, nil).Start(); err != nil {
 		return err
 	}
 

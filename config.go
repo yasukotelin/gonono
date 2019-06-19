@@ -11,9 +11,8 @@ import (
 const configName = ".gonono.json"
 
 type config struct {
-	Path    string `json:"path"`
-	Editor  string `json:"editor"`
-	OpenCmd string `json:"open_cmd"`
+	Path   string `json:"path"`
+	Editor string `json:"editor"`
 }
 
 func getConfigPath() (string, error) {
