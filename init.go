@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/urfave/cli"
@@ -13,9 +14,14 @@ func runInit(c *cli.Context) error {
 		return err
 	}
 
+	if existsFile(configPath) {
+		return fmt.Errorf("%v already exists.", configPath)
+	}
+
 	if err := createEmptyConfig(configPath); err != nil {
 		return err
 	}
+	fmt.Printf("created the %v\n", configPath)
 	return nil
 }
 
@@ -42,4 +48,9 @@ func createEmptySettingJSONBytes() ([]byte, error) {
 		Editor: "",
 	}
 	return json.MarshalIndent(config, "", "    ")
+}
+
+func existsFile(path string) bool {
+	_, e := os.Stat(path)
+	return e == nil
 }

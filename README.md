@@ -67,10 +67,10 @@ If you puts the `.gonono.json` on the `~` (home directory) or run `gonono init` 
 | Command | Sub command |                                           |
 |---------|-------------|-------------------------------------------|
 | gonono  |             | opens the note directory with your editor |
-| gonono  | init i      | creates the empty config file             |
-| gonono  | open o      | opens the note directory with explorer    |
-| gonono  | new n       | creates the new note                      |
-| gonono  | finder f    | find the created note with fzf            |
+| gonono  | init, i     | creates the empty config file             |
+| gonono  | open, o     | opens the note directory with explorer    |
+| gonono  | new, n      | creates the new note                      |
+| gonono  | finder, f   | find the created note with fzf            |
 
 ### gonono
 
