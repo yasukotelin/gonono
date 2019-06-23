@@ -47,18 +47,10 @@ If you puts the `.gonono.json` on the `~` (home directory) or run `gonono init` 
 }
 ```
 
-<table>
-    <tr>
-        <td>path</td>
-        <td>your note directory path</td>
-        <td>~/note</td>
-    </tr>
-    <tr>
-        <td>editor</td>
-        <td>your favorite editor</td>
-        <td>gvim</td>
-    </tr>
-</table>
+| key    | value                    | example        |
+|--------|--------------------------|----------------|
+| path   | your note directory path | ~/Dropbox/note |
+| editor | your favorite editor     | gvim           |
 
 > **NOTE**  windows path -> `C:\\Users\\yourname`
 
