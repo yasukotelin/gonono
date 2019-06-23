@@ -3,6 +3,7 @@ module github.com/yasukotelin/gonono
 go 1.12
 
 require (
+	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v0.0.5 // indirect
 	github.com/urfave/cli v1.20.0

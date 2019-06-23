@@ -28,7 +28,10 @@ func createEmptyConfig(path string) error {
 	if err != nil {
 		return err
 	}
-	file.WriteString(string(bytes))
+	_, err = file.WriteString(string(bytes))
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

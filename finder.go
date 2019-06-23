@@ -34,7 +34,7 @@ func runFinder(c *cli.Context) error {
 		return err
 	}
 
-	files, err := readPaths(conf)
+	files, err := readAllFiles(conf.Path)
 	if err != nil {
 		return err
 	}
@@ -51,13 +51,16 @@ func runFinder(c *cli.Context) error {
 	return nil
 }
 
-func readPaths(conf *config) ([]string, error) {
+func readAllFiles(path string) ([]string, error) {
 	var paths []string
-	filepath.Walk(conf.Path, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			paths = append(paths, path)
 		}
 		return nil
 	})
+	if err != nil {
+		return paths, err
+	}
 	return paths, nil
 }

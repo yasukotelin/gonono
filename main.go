@@ -14,25 +14,26 @@ func main() {
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{
-			Name:   "init",
-			Usage:  "initialize config file",
-			Action: runInit,
+			Name:    "init",
+			Usage:   "creates the empty config file",
+			Aliases: []string{"i"},
+			Action:  runInit,
 		},
 		{
 			Name:    "open",
-			Usage:   "opens with the explorer",
+			Usage:   "opens the note directory with explorer",
 			Aliases: []string{"o"},
 			Action:  runOpen,
 		},
 		{
 			Name:    "new",
-			Usage:   "creates the new content",
+			Usage:   "creates the new note",
 			Aliases: []string{"n"},
 			Action:  runNew,
 		},
 		{
 			Name:    "finder",
-			Usage:   "finds the created content",
+			Usage:   "find the created note with fzf",
 			Aliases: []string{"f"},
 			Action:  runFinder,
 		},
@@ -74,7 +75,7 @@ func runGonono(c *cli.Context) error {
 
 	// カレントディレクトリでエディタを開くために"."を引数に指定する
 	command := fmt.Sprintf("%s .", conf.Editor)
-	if err = newCmd(command, nil, nil).Start(); err != nil {
+	if err = newCmd(command, nil, nil).Run(); err != nil {
 		return err
 	}
 

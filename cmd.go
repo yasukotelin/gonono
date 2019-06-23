@@ -38,5 +38,5 @@ func newOpenCmd(path string) *exec.Cmd {
 }
 
 func newFinderCmd(paths []string, w io.Writer) *exec.Cmd {
-	return newCmd("fzf", strings.NewReader(strings.Join(paths, "\n")), w)
+	return newCmd("fzf", strings.NewReader(strings.Join(paths, "\n\r")), w)
 }
