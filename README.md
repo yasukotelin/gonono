@@ -2,6 +2,20 @@
 
 gonono is an accessor tool to your note directory
 
+## How to install
+
+### with golang
+
+If you have installed golang. You can install with `go get` command.
+
+```cmd
+$ go get github.com/yasukotelin/gonono
+```
+
+### for windows users
+
+If you use Windows, you can download the built binary from [release page](https://github.com/yasukotelin/gonono/releases/tag/v1.0.0).
+
 ## What is the Note direcotry?
 
 If you want to write the note with your favorite editor, may be you have created the directory on local for markdown files.
