@@ -15,7 +15,7 @@ func runInit(c *cli.Context) error {
 	}
 
 	if existsFile(configPath) {
-		return fmt.Errorf("%v already exists.", configPath)
+		return fmt.Errorf("%v already exists", configPath)
 	}
 
 	if err := createEmptyConfig(configPath); err != nil {

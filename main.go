@@ -7,10 +7,14 @@ import (
 	"github.com/urfave/cli"
 )
 
+var (
+	flagDir string
+)
+
 func main() {
 	app := cli.NewApp()
 	app.Name = "gonono"
-	app.Version = "1.0.0"
+	app.Version = "1.1.0"
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{
@@ -29,7 +33,14 @@ func main() {
 			Name:    "new",
 			Usage:   "creates the new note",
 			Aliases: []string{"n"},
-			Action:  runNew,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:        "dir, d",
+					Usage:       "create to the dir",
+					Destination: &flagDir,
+				},
+			},
+			Action: runNew,
 		},
 		{
 			Name:    "finder",

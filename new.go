@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
 	"os"
@@ -34,21 +33,28 @@ func runNew(c *cli.Context) error {
 		return err
 	}
 
-	if err := os.Chdir(conf.Path); err != nil {
-		return err
-	}
-
-	inputTitle := readLine("Title: ")
+	inputTitle := readline("Title: ")
 	if inputTitle == "" {
 		return errors.New("inputed title is empty")
 	}
 
-	dirName := formatToDirectoryName(inputTitle)
+	createDir := filepath.Join(conf.Path, flagDir, formatToDirectoryName(inputTitle))
 
-	if err = os.Mkdir(dirName, os.ModeDir); err != nil {
+	for {
+		in := readline(fmt.Sprintf("is this OK? (%s) [y/n] ", createDir))
+		if in == "y" {
+			break
+		} else if in == "n" {
+			return nil
+		} else {
+			fmt.Println("you should input the y or n")
+		}
+	}
+
+	if err = os.MkdirAll(createDir, os.ModeDir); err != nil {
 		return err
 	}
-	indexFile := filepath.Join(dirName, "index.md")
+	indexFile := filepath.Join(createDir, "index.md")
 	file, err := os.Create(indexFile)
 	if err != nil {
 		return err
@@ -69,18 +75,7 @@ func runNew(c *cli.Context) error {
 	return nil
 }
 
-func readLine(askMsg string) string {
-	fmt.Print(askMsg)
-	scan := bufio.NewScanner(os.Stdin)
-	var s string
-	if scan.Scan() {
-		s = scan.Text()
-	}
-	return s
-}
-
 func formatToDirectoryName(s string) string {
-	fmt.Println(s)
 	t := time.Now()
 	return fmt.Sprintf("%s-%s", t.Format("2006-01-02"), strings.Join(strings.Split(s, " "), "-"))
 }

@@ -4,6 +4,8 @@ go 1.12
 
 require (
 	github.com/gorilla/websocket v1.4.0 // indirect
+	github.com/mattn/go-rl v0.0.0-20150228012913-e68fbe7c8cce
+	github.com/mattn/go-runewidth v0.0.4 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v0.0.5 // indirect
 	github.com/urfave/cli v1.20.0
