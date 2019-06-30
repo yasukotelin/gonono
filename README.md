@@ -107,6 +107,8 @@ Open with explorer.
 
 If you run `gonoon new` command, gonono asks you Title.
 
+<img src="images/gonono-new.gif" />
+
 ```cmd
 $ gonono new
 Title: sample note
@@ -119,6 +121,19 @@ Title: sample note
 - Spaces of your inputed title is replaced by hyphen `-`.
 
 > **NOTE** The created new note by `new` command is put on the root of the note direcotry.
+
+if you want to specify the direcotry, you can use the `-dir` `-d` flag.
+
+<img src="images/gonono-new-dir.gif">
+
+```cmd
+$ gonono new -d develop/gonono
+Title: How to use the gonono
+```
+
+`develop/gonono/yyyy-MM-dd-How-to-use-the-gonono\inde.md` is created on the root of note directory.
+
+> **NOTE** You have to specify the **relative path** from the root of the note directory.
 
 ### gonono finder
 
