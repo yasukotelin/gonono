@@ -38,7 +38,7 @@ func runNew(c *cli.Context) error {
 		return errors.New("inputed title is empty")
 	}
 
-	createDir := filepath.Join(conf.Path, flagDir, formatToDirectoryName(inputTitle))
+	createDir := filepath.Join(conf.Path, newFlagDir, formatToDirectoryName(inputTitle))
 
 	for {
 		in := readline(fmt.Sprintf("is this OK? (%s) [y/n] ", createDir))
@@ -67,6 +67,12 @@ func runNew(c *cli.Context) error {
 		return err
 	}
 
+	if !newFlagOpen {
+		fmt.Println("created")
+		return nil
+	}
+
+	fmt.Println("created and open it now")
 	cmd := exec.Command(conf.Editor, indexFile)
 	if err := cmd.Start(); err != nil {
 		return err

@@ -8,13 +8,14 @@ import (
 )
 
 var (
-	flagDir string
+	newFlagOpen bool
+	newFlagDir  string
 )
 
 func main() {
 	app := cli.NewApp()
 	app.Name = "gonono"
-	app.Version = "1.1.0"
+	app.Version = "1.2.0"
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{
@@ -34,10 +35,15 @@ func main() {
 			Usage:   "creates the new note",
 			Aliases: []string{"n"},
 			Flags: []cli.Flag{
+				cli.BoolFlag{
+					Name:        "open, o",
+					Usage:       "opens after created",
+					Destination: &newFlagOpen,
+				},
 				cli.StringFlag{
 					Name:        "dir, d",
 					Usage:       "create to the dir",
-					Destination: &flagDir,
+					Destination: &newFlagDir,
 				},
 			},
 			Action: runNew,

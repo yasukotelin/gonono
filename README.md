@@ -105,6 +105,11 @@ Open with explorer.
 
 ### gonono new
 
+| Command    | Flag       |                     |
+|------------|------------|---------------------|
+| gonono new | --dir, -d  | create to the dir   |
+| gonono new | --open, -o | opens after created |
+
 If you run `gonoon new` command, gonono asks you Title.
 
 <img src="images/gonono-new.gif" />
@@ -134,6 +139,8 @@ Title: How to use the gonono
 `develop/gonono/yyyy-MM-dd-How-to-use-the-gonono\inde.md` is created on the root of note directory.
 
 > **NOTE** You have to specify the **relative path** from the root of the note directory.
+
+If you specify the `--open` or `-o`, open the created it.
 
 ### gonono finder
 
