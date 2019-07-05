@@ -15,7 +15,7 @@ var (
 func main() {
 	app := cli.NewApp()
 	app.Name = "gonono"
-	app.Version = "1.2.0"
+	app.Version = "1.2.1"
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{
@@ -92,7 +92,7 @@ func runGonono(c *cli.Context) error {
 
 	// カレントディレクトリでエディタを開くために"."を引数に指定する
 	command := fmt.Sprintf("%s .", conf.Editor)
-	if err = newCmd(command, nil, nil).Run(); err != nil {
+	if err = newCmd(command, nil, nil).Start(); err != nil {
 		return err
 	}
 
