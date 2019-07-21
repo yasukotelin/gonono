@@ -15,7 +15,7 @@ var (
 func main() {
 	app := cli.NewApp()
 	app.Name = "gonono"
-	app.Version = "1.2.1"
+	app.Version = "1.3.0"
 	app.Usage = "provides the note environment with your favorite editor. "
 	app.Commands = []cli.Command{
 		{

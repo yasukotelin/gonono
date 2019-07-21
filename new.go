@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -33,10 +32,8 @@ func runNew(c *cli.Context) error {
 		return err
 	}
 
+	fmt.Println("(Use Ctrl + C to cancel and go back to the console)")
 	inputTitle := readline("Title: ")
-	if inputTitle == "" {
-		return errors.New("inputed title is empty")
-	}
 
 	createDir := filepath.Join(conf.Path, newFlagDir, formatToDirectoryName(inputTitle))
 
@@ -61,10 +58,12 @@ func runNew(c *cli.Context) error {
 	}
 	defer file.Close()
 
-	h1Msg := fmt.Sprintf("# %s", inputTitle)
-	_, err = fmt.Fprint(file, h1Msg)
-	if err != nil {
-		return err
+	if inputTitle != "" {
+		h1Msg := fmt.Sprintf("# %s", inputTitle)
+		_, err = fmt.Fprint(file, h1Msg)
+		if err != nil {
+			return err
+		}
 	}
 
 	if !newFlagOpen {
@@ -83,5 +82,9 @@ func runNew(c *cli.Context) error {
 
 func formatToDirectoryName(s string) string {
 	t := time.Now()
-	return fmt.Sprintf("%s-%s", t.Format("2006-01-02"), strings.Join(strings.Split(s, " "), "-"))
+	if s == "" {
+		return fmt.Sprintf("%s", t.Format("2006-01-02"))
+	} else {
+		return fmt.Sprintf("%s-%s", t.Format("2006-01-02"), strings.Join(strings.Split(s, " "), "-"))
+	}
 }
